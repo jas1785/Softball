@@ -26,19 +26,18 @@ export class ModalComponent implements OnInit {
 
   createForm() {
     this.statForm = this.formBuilder.group({
-      atBat: 0,
-      hits: 0,
-      double: 0,
-      triple: 0,
-      homerun: 0,
-      rbi: 0,
-      runs: 0,
-      strikeout: 0,
-      walk: 0,
+      atBat: undefined,
+      hits: undefined,
+      double: undefined,
+      triple: undefined,
+      homerun: undefined,
+      rbi: undefined,
+      runs: undefined,
+      strikeout: undefined,
+      walk: undefined,
     });
   }
   save() {
-   // console.log(this.inputStat);
     this.updateVisible();
   }
 
