@@ -1,0 +1,9 @@
+<div> 
+  <div class="group-padding">
+      <ul class="list-group" *ngFor="let player of players">
+        <li [routerLink]="['/player', player.id]" class="list-group-item player-padding">
+           <p class="center"><span class="bold">#{{player.number}}</span> {{player.firstName}} {{player.lastName}}</p>
+        </li>
+      </ul>
+    </div>
+</div>

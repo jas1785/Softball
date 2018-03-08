@@ -1,0 +1,43 @@
+<div class="center player-border">
+  <form>
+    <div class="form-group">
+        <div class="container table-center">
+            <div class="row">
+                <div class="col-auto">
+                  <label for="First-Name">First Name</label>
+                </div>
+                <div class="col-auto">
+                  <div class="input-group mb-3 center-cell">
+                      <input [(ngModel)] = "firstName" name ="firstName" type="firstName" class="form-control" id="firstNameInput" aria-describedby="First Name" placeholder="First Name">
+                  </div>
+                </div>
+                <div class="col-auto">
+                    <label for="Last-Name">Last Name</label>
+                  </div>
+                <div class="col-auto">
+                  <div class="input-group mb-3">
+                      <input [(ngModel)] = "lastName" name ="lastName" type="lastName" class="form-control" id="lastNameInput" aria-describedby="Last Name" placeholder="Last Name">  
+                  </div>
+                </div>
+                <div class="col-auto">
+                    <label for="number">Number</label>
+                  </div>
+                <div class="col-auto">
+                    <div class="input-group mb-3">
+                        <input [(ngModel)] = "number" name ="number" type="number" class="form-control" id="numberInput" aria-describedby="Number" placeholder="Number">
+                    </div>      
+                </div>
+                <div class="col-auto">
+                    <div class="input-group mb-3">
+                        <button type="submit" (click)="onSubmit()" class="btn btn-primary">Add</button>
+                    </div>      
+                </div>
+              </div>
+            </div>      
+      </div>
+  </form>
+</div>
+
+<div>
+  <app-list-players [players] = playerNames></app-list-players>
+</div>

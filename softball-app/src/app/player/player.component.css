@@ -1,0 +1,11 @@
+th,td{
+    text-align: center;
+}
+
+.stat-button{
+    text-align: right
+}
+
+.player-heading{
+    float:left;
+}

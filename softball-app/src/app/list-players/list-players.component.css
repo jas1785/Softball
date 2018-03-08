@@ -1,0 +1,18 @@
+.player-padding {
+    margin: 1px;
+}
+
+.group-padding {
+    padding:20px;
+    overflow-x: auto;
+    height: 200px;
+    margin-top: 30px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+li:hover {
+    background-color: 	#C0C0C0;
+}
