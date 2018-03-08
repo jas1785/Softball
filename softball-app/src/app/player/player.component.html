@@ -1,0 +1,45 @@
+<div>
+  <div class="container">
+      <div class="row">
+        <div class="col-8">
+            <h1>{{currentPlayer.firstName}} {{currentPlayer.lastName}}</h1>
+        </div>
+        <div class="col-4 stat-button">
+            <button (click) = "addClick()" class="btn btn-primary" type="submit">Add Stats</button>
+        </div>
+    </div>
+
+    <div *ngIf="currentStats != undefined">
+        <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th scope="col">AVG</th>
+                <th scope="col">Hits</th>
+                <th scope="col">At Bats</th>
+                <th scope="col">Doubles</th>
+                <th scope="col">Triples</th>
+                <th scope="col">Home Runs</th>
+                <th scope="col">RBI</th>
+                <th scope="col">Runs</th>
+                <th scope="col">Stike Outs</th>
+                <th scope="col">Walks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{currentStats.getAverage() | number:'0.1-3'}}</td>
+                <td>{{currentStats.getHits()}}</td>
+                <td>{{currentStats.getAtBats()}}</td>
+                <td>{{currentStats.getDoubles()}}</td>
+                <td>{{currentStats.getTriples()}}</td>
+                <td>{{currentStats.getHomeRuns()}}</td>
+                <td>{{currentStats.getRBI()}}</td>
+                <td>{{currentStats.getRuns()}}</td>
+                <td>{{currentStats.getStrikeOut()}}</td>
+                <td>{{currentStats.getWalks()}}</td>
+              </tr>
+            </tbody>
+          </table>
+     </div>
+</div>
+<app-modal (toggleVisible)="updateVisible($event)" [visible] =showPopup></app-modal>

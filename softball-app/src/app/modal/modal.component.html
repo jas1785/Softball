@@ -1,0 +1,99 @@
+<!-- Modal -->
+<div class="my-modal" *ngIf='visible'>
+    <div class="modal-body">
+        <h1 class="header-center">Add Stats</h1>
+        <div class="container table-center">
+        <form  >
+            <div class="row">
+                <div class="col-sm">
+                    <label for="At-Bats">At Bats</label>
+                </div>
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+                    <input type="text" formControlName="atBat" class="form-control" placeholder="AtBats" aria-label="AtBats" aria-describedby="basic-addon1">  
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <label for="Hits">Hits</label>
+                    </div>
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Hits" aria-label="Hits" aria-describedby="basic-addon1">   
+                    </div>
+                </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-sm">
+                        <label for="2B">2B</label>
+                    </div>
+                    <div class="col-sm">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="2B" aria-label="2B" aria-describedby="basic-addon1">
+                        </div>      
+                    </div>
+                    <div class="col-sm">
+                        <label for="3B">3B</label>
+                    </div>
+                    <div class="col-sm">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="3B" aria-label="3B" aria-describedby="basic-addon1">
+                        </div>      
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-sm">
+                        <label for="HR">HR</label>
+                        </div>
+                    <div class="col-sm">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="HR" aria-label="HR" aria-describedby="basic-addon1">
+                        </div>      
+                    </div>
+                    <div class="col-sm">
+                        <label for="SO">SO</label>
+                        </div>
+                    <div class="col-sm">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="SO" aria-label="SO" aria-describedby="basic-addon1">
+                        </div>      
+                    </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-sm">
+                            <label for="Walks">Walks</label>
+                        </div>
+                        <div class="col-sm">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Walks" aria-label="Walks" aria-describedby="basic-addon1">
+                            </div>      
+                        </div>
+                        <div class="col-sm">
+                        <label for="RBI">RBI</label>
+                        </div>
+                        <div class="col-sm">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="RBI" aria-label="RBI" aria-describedby="basic-addon1">
+                            </div>   
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <div class="col-sm">
+                                    <button type="button" (click)="save()" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+    
+                        <div class="col-sm table-center">
+                            <div class="col-sm">
+                                <button type="button"  (click)="close()" class="btn btn-primary">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+          </div>
+    </div>
+</div>
+<div class="modal-background" *ngIf='visible'></div>

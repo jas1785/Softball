@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+.center {
+    text-align: center;
+}
+
+.center-cell{
+    text-align:center;
+}
+
+.right-cell{
+    text-align:right;
+}
+
+.left-cell{
+    text-align:left;
+}
+
