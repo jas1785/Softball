@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="my-modal" *ngIf='modalConfig.visible'>
     <div class="modal-body">
-        <h1 class="header-center">{{currentPlayer}}Add Stats</h1>
+        <h1 class="header">{{modalConfig.getPlayer().displayName()}}</h1>
         <div class="container table-center">
         <form [formGroup] ="statForm" >
             <div class="row">
