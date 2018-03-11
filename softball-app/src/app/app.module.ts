@@ -14,6 +14,7 @@ import { MockPlayerServiceService } from './MockData/mock-player-service.service
 import { PlayerComponent } from './player/player.component';
 import { HomeComponent } from './home/home.component';
 import { TrendingComponent } from './trending/trending.component';
+import { StatService } from './service/stat.service';
 
 const appRoutes: Routes = [
   { path: 'player/:id', component: PlayerComponent },
@@ -46,7 +47,7 @@ const appRoutes: Routes = [
       { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  providers: [PlayerServiceService, MockPlayerServiceService],
+  providers: [PlayerServiceService, MockPlayerServiceService, StatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

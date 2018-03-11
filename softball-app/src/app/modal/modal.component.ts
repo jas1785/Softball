@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Stats } from '../common/stats';
 import { Player } from '../common/player';
 import { ModalConfig } from '../common/modalConfig';
+import { StatService } from '../service/stat.service';
 
 @Component({
   selector: 'app-modal',
@@ -19,7 +20,7 @@ export class ModalComponent implements OnInit {
   config: ModalConfig;
   statForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private statService: StatService) {
     console.log('create form');
     this.createForm();
     console.log(this.visible + ' visibile');
@@ -57,45 +58,16 @@ export class ModalComponent implements OnInit {
     });
   }
   save() {
-    console.log(this.statForm.value);
     if (this.statForm.dirty) {
 
-      console.log(this.validateStats());
-      this.updateStats();
+      if (this.statService.validateStats(this.statForm)) {
+        this.updateStats();
+      }
 
       // clear form
       this.createForm();
     }
    // this.updateVisible();
-  }
-
-  validateStats() {
-    let hitCount = 0;
-    let strikeOutCount = 0;
-    let valid = false;
-    if (this.statForm.value.atBat !== undefined) {
-      const inputedAtBats = this.statForm.value.atBat;
-
-      // get all possible hits
-      hitCount += +(this.isNull(this.statForm.value.double) ? 0 : this.statForm.value.double);
-      hitCount += +(this.isNull(this.statForm.value.triple) ? 0 : this.statForm.value.triple);
-      hitCount += +(this.isNull(this.statForm.value.homerun) ? 0 : this.statForm.value.homerun);
-      hitCount += +(this.isNull(this.statForm.value.single) ? 0 : this.statForm.value.single);
-
-      strikeOutCount = +(this.isNull(this.statForm.value.strikeout) ? 0 : this.statForm.value.strikeout);
-
-      // add strikeouts from at bats
-      hitCount = strikeOutCount + hitCount;
-      valid = this.isHitsEqualToAtBat(hitCount, this.statForm.value.atBat);
-    }
-   return valid;
-  }
-
-  isNull(value) {
-    return value === null || value === undefined;
-  }
-  isHitsEqualToAtBat(hits, atBat) {
-    return +hits === +atBat;
   }
 
   updateStats() {
@@ -109,65 +81,13 @@ export class ModalComponent implements OnInit {
   }
 
   private updatePlayerStats(currentStat: Stats) {
-
-  console.log(currentStat);
     Object.keys(this.statForm.controls).forEach(key => {
       const stat = this.statForm.get(key).value;
 
       if (stat !== undefined && stat !== null) {
-        this.statMapper( key, stat, currentStat );
+        this.statService.statMapper(key, stat, currentStat);
       }
     });
-  }
-
-  private statMapper( key, value: number, currentStat: Stats ) {
-    let hitCount = 0;
-    if (key === 'atBat') {
-      let total = currentStat.getAtBats();
-      total += +value;
-      currentStat.setAtbats(total);
-    } else if (key === 'strikeout') {
-      let total = currentStat.getStrikeOut();
-      total += +value;
-      currentStat.setStrikeOuts(total);
-    } else if (key === 'rbi') {
-      let total = currentStat.getRBI();
-      total += +value;
-      currentStat.setRBI(total);
-    } else if (key === 'runs') {
-      let total = currentStat.getRuns();
-      total += +value;
-      currentStat.setRuns(total);
-    } else if (key === 'walks') {
-      let total = currentStat.getWalks();
-      total += +value;
-      currentStat.setWalks(total);
-    } else if (key === 'homerun') {
-      let total = currentStat.getHomeRuns();
-      total += +value;
-      hitCount += +value;
-      currentStat.setHomeRuns(total);
-    } else if (key === 'double') {
-      let total = currentStat.getDoubles();
-      total += +value;
-      hitCount += +value;
-      currentStat.setDoubles(total);
-    } else if (key === 'triple') {
-      let total = currentStat.getTriples();
-      total += +value;
-      hitCount += value;
-      currentStat.setTriples(total);
-    } else if (key === 'single') {
-      hitCount += +value;
-    }
-
-    if (hitCount > 0) {
-      let total = currentStat.getHits();
-      total += +hitCount;
-      currentStat.setHits(total);
-    }
-
-    console.log(currentStat);
   }
 
   close() {
