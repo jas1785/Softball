@@ -7,7 +7,6 @@ export class Stats {
     homeRuns: number;
     walks: number;
     strikeOuts: number;
-
     runs: number;
     rbi: number;
 
