@@ -11,6 +11,9 @@ export class Player {
     constructor() {
     }
 
+    displayName() {
+        return this.firstName + ' ' + this.lastName;
+    }
      setFirstName(firstName) {
         this.firstName = firstName;
     }

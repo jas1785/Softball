@@ -15,6 +15,10 @@
     overflow: auto;
 }
 
+.modal-header{
+    background-color: #000099;
+}
+
 .modal-body {
     padding: 20px;
     background: #fff;

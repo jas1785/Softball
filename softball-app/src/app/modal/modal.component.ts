@@ -14,22 +14,16 @@ export class ModalComponent implements OnInit {
 
   @Input() modalConfig: ModalConfig;
   @Output() toggleVisible: EventEmitter<boolean> = new EventEmitter();
-
-  visible: Boolean = false;
-
-  config: ModalConfig;
   statForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private statService: StatService) {
     console.log('create form');
     this.createForm();
-    console.log(this.visible + ' visibile');
 
     if (this.modalConfig === undefined ) {
 
       this.modalConfig = new ModalConfig();
       this.modalConfig.setVisibile(false);
-      this.visible = false;
     }
    }
 
@@ -40,7 +34,6 @@ export class ModalComponent implements OnInit {
 
       this.modalConfig = new ModalConfig();
       this.modalConfig.setVisibile(false);
-      this.visible = false;
     }
   }
 
@@ -61,23 +54,27 @@ export class ModalComponent implements OnInit {
     if (this.statForm.dirty) {
 
       if (this.statService.validateStats(this.statForm)) {
-        this.updateStats();
-      }
+       const success = this.updateStats();
 
-      // clear form
-      this.createForm();
+       if (success) {
+         this.close();
+       } else {
+         console.log('display errors');
+       }
+      }
     }
-   // this.updateVisible();
   }
 
   updateStats() {
     console.log('Updating Stats');
+    let success = true;
 
     if (this.statForm.dirty) {
       let stat = this.modalConfig.getPlayer().stats;
       console.log(stat);
       this.updatePlayerStats(stat);
     }
+    return success;
   }
 
   private updatePlayerStats(currentStat: Stats) {
