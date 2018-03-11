@@ -3,6 +3,7 @@ import { PlayerServiceService } from '../service/player-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { Player } from '../common/player';
 import { Stats } from '../common/stats';
+import { ModalConfig } from '../common/modalConfig';
 
 @Component({
   selector: 'app-player',
@@ -13,7 +14,8 @@ export class PlayerComponent implements OnInit {
 
   currentPlayer: Player;
   currentStats: Stats;
-  showPopup: boolean;
+
+  modalConfig: ModalConfig;
 
   constructor(private aPlayerServiceService: PlayerServiceService, private route: ActivatedRoute) { }
 
@@ -30,12 +32,16 @@ export class PlayerComponent implements OnInit {
    });
   }
   addClick() {
-    console.log(this.showPopup);
-    this.showPopup = true;
+    this.modalConfig = new ModalConfig();
+
+    this.modalConfig.setCurrentPlayer(this.currentPlayer);
+    this.modalConfig.setVisibile(true);
+
+    console.log(this.modalConfig);
   }
 
   updateVisible(event) {
     console.log(event);
-    this.showPopup = event;
+    this.modalConfig.setVisibile(event);
   }
 }
