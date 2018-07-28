@@ -1,9 +1,22 @@
 <!-- Modal -->
 <div class="my-modal" *ngIf='modalConfig.visible'>
     <div class="modal-body">
-        <h1 class="header">{{modalConfig.getPlayer().displayName()}}</h1>
+        <div *ngIf='error'>
+            <app-error [errorConfig] ='errorConfig'></app-error>
+        </div>
+        <h1 class="header">{{modalConfig.getPlayer().firstName}} {{modalConfig.getPlayer().lastName}}</h1>
         <div class="container table-center">
         <form [formGroup] ="statForm" >
+            <div class="row">
+                <div class="col-sm">
+                    <label for="Game Number">Game Number</label>
+                </div>
+                <div class="col-sm">
+                    <div class="input-group mb-3">
+                        <input type="text" formControlName="gameNumber" class="form-control" placeholder="Game Number" />
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm">
                     <label for="At-Bats">At Bats</label>

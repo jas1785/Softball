@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Player } from '../common/player';
 import { Stats } from '../common/stats';
 import { ModalConfig } from '../common/modalConfig';
+import { ModalResponse } from '../common/modalResponse';
 
 @Component({
   selector: 'app-player',
@@ -13,23 +14,25 @@ import { ModalConfig } from '../common/modalConfig';
 export class PlayerComponent implements OnInit {
 
   currentPlayer: Player;
+  visible = false;
   currentStats: Stats;
-
   modalConfig: ModalConfig;
 
   constructor(private aPlayerServiceService: PlayerServiceService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      console.log(+params['id']);
-
-      this.currentPlayer = this.aPlayerServiceService.find(+params['id']);
-
-      if (this.currentPlayer !== undefined) {
-        this.currentStats = this.currentPlayer.stats;
-        console.log(this.currentPlayer);
-      }
-   });
+    const playerId = this.route.snapshot.params['id'];
+     this.aPlayerServiceService.find(playerId)
+            .subscribe( found => {
+              console.log('found ' + found);
+              this.currentPlayer = found as Player;
+              this.visible = true;
+              if (this.currentPlayer.stats === undefined) {
+                this.currentPlayer.stats = new Stats();
+                console.log(this.currentPlayer.stats);
+              }
+            });
+          //  this.currentStats=new Stats();
   }
   addClick() {
     this.modalConfig = new ModalConfig();
@@ -40,8 +43,10 @@ export class PlayerComponent implements OnInit {
     console.log(this.modalConfig);
   }
 
-  updateVisible(event) {
+  updateVisible(event: ModalResponse) {
     console.log(event);
-    this.modalConfig.setVisibile(event);
+    this.modalConfig.setVisibile(event.isVisible());
+    this.modalConfig.getPlayer().stats = event.getStats();
+    this.currentStats = this.modalConfig.getPlayer().stats;
   }
 }

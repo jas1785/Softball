@@ -9,6 +9,7 @@ export class Stats {
     strikeOuts: number;
     runs: number;
     rbi: number;
+    gameNumber: number;
 
     setRuns(runs) {
         this.runs = runs;

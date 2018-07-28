@@ -1,13 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable,OnInit } from '@angular/core';
 import { Player } from '../common/player';
 import { Stats } from '../common/stats';
 
 @Injectable()
-export class MockPlayerServiceService {
+export class MockPlayerServiceService  {
 
   players: Array<Player>;
 
   constructor() {
+   }
+
+  get() {
 
     const player1 = new Player();
     player1.setFirstName('Mckenzi');
@@ -53,16 +56,14 @@ export class MockPlayerServiceService {
 
     player3.setStats(player3Stats);
 
-
     if (this.players === undefined) {
       this.players = [];
     }
     this.players.push(player1);
     this.players.push(player2);
     this.players.push(player3);
-   }
 
-  get() {
+    console.log(this.players);
     return this.players;
   }
 }
