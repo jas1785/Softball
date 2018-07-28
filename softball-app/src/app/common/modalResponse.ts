@@ -1,12 +1,19 @@
-import { Player } from './player';
+import { Stats } from './stats';
 
-export class ModalConfig {
+export class ModalResponse {
 
-    private currentPlayer: Player;
-     visible: Boolean;
+    private currentStat: Stats;
+    visible: Boolean;
     constructor() {
     }
 
+    setCurrentStat(stat: Stats) {
+        this.currentStat = stat;
+    }
+
+    getStats() {
+        return this.currentStat;
+    }
     setVisibile(visible) {
         this.visible = visible;
     }
@@ -16,13 +23,5 @@ export class ModalConfig {
             return false;
         }
         return this.visible;
-    }
-
-    setCurrentPlayer(player) {
-        this.currentPlayer = player;
-    }
-
-    getPlayer(): Player {
-        return this.currentPlayer;
     }
 }

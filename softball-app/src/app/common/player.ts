@@ -1,12 +1,15 @@
 import { Stats } from './stats';
 
 export class Player {
-    id: number;
+    _id: string;
     firstName: string;
     lastName: string;
     number: number;
+    objectIdHexString: string;
 
     stats: Stats;
+
+    games: Stats[];
 
     constructor() {
     }
